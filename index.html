@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consome api</title>
+</head>
+<body>
+    <h1>Consumindo API</h1>
+    <div id="pessoas"></div>
+    <button onclick="geraPessoa()">Gerar nova pessoa</button>
+    <script>
+     function geraPessoa(){
+        // consome api randomuser
+ 
+        fetch('https://randomuser.me/api/',)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            let pessoas = document.querySelector('#pessoas');
+            pessoas.innerHTML = `
+                <img src="${data.results[0].picture.large}" alt="Foto de ${data.results[0].name.first}">
+                <p>${data.results[0].name.first} ${data.results[0].name.last}</p>
+                <p>${data.results[0].email}</p>
+                <p>${data.results[0].location.country}</p>
+            `;
+        });
+     }
+    </script>
+</body>
+</html>
